@@ -21,5 +21,11 @@
         "symfony/twig-bridge": "^3.1",
         "symfony/asset": "^3.1",
         "rorua/arabic-root-extractor": "dev-master"
+    },
+    "repositories": {
+        "rorua-arabic-root-extractor": {
+            "type": "git",
+            "url": "git@github.com:romainruaud/arabic-root-extractor.git"
+        }
     }
 }
