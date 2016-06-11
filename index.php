@@ -1,0 +1,45 @@
+<?php
+
+use Silex\Provider\UrlGeneratorServiceProvider;
+
+require_once __DIR__.'/vendor/autoload.php';
+
+$app = new Silex\Application();
+
+$app['debug'] = true;
+
+//Registering Twig provider
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+    'twig.path' => __DIR__.'/views',
+));
+
+// Registering asset component
+$app->register(new Silex\Provider\AssetServiceProvider(), array(
+    'assets.version' => 'v1',
+    'assets.version_format' => '%s?version=%s',
+    'assets.named_packages' => array(
+        'css' => array('version' => 'css2', 'base_path' => '/css'),
+    ),
+));
+
+// Matching active page
+$app->before(function ($request) use ($app) {
+    $app['twig']->addGlobal('active', $request->get("_route"));
+});
+
+
+// Routes
+
+$app->get('/', function() use ($app) {
+    return $app['twig']->render('layout.twig');
+})->bind('home');
+
+$app->get('/about', function() use ($app) {
+    return $app['twig']->render('pages/about.twig');
+})->bind('about');
+
+$app->get('/contact', function() use ($app) {
+    return $app['twig']->render('pages/contact.twig');
+})->bind('contact');
+
+$app->run();

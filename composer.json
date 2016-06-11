@@ -1,0 +1,24 @@
+{
+    "name": "rorua/arabic-root-finder-skeleton",
+    "type": "project",
+    "license": "MIT",
+    "authors": [{
+        "name": "Romain Ruaud",
+        "email": "romain.ruaud@gmail.com"
+    }
+    ],
+    "description": "Simple skeleton for a website dedicated to find triliteral root of arabic words. Silex based.",
+    "homepage": "https://github.com/romainruaud/arabic-root-finder-skeleton",
+    "keywords": [
+        "arabic",
+        "language",
+        "root",
+        "triliteral"
+    ],
+    "require": {
+        "silex/silex": "^2.0",
+        "twig/twig": "^1.24",
+        "symfony/twig-bridge": "^3.1",
+        "symfony/asset": "^3.1"
+    }
+}
