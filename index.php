@@ -31,7 +31,7 @@ $app->before(function ($request) use ($app) {
 
 // Routes
 
-$app->get('/', function(Request $request) use ($app) {
+$app->match('/', function(Request $request) use ($app) {
 
     $params = [];
     if ($request->isMethod("POST")) {
