@@ -1,0 +1,18 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <p>Fill the form below with an arabic word to find its root.</p>
+            <form role="form" method="POST" action="{{ path('home') }}">
+                <div class="form-group">
+                    <label for="word">The word</label>
+                    <input type="word" class="form-control" id="word" placeholder="معلم">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

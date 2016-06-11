@@ -1,6 +1,7 @@
 <?php
 
-use Silex\Provider\UrlGeneratorServiceProvider;
+use Symfony\Component\HttpFoundation\Request;
+use Rorua\ArabicRootExtractor\Extractor;
 
 require_once __DIR__.'/vendor/autoload.php';
 
@@ -30,8 +31,21 @@ $app->before(function ($request) use ($app) {
 
 // Routes
 
-$app->get('/', function() use ($app) {
-    return $app['twig']->render('layout.twig');
+$app->get('/', function(Request $request) use ($app) {
+
+    $params = [];
+    if ($request->isMethod("POST")) {
+        $word = $request->get("word");
+        if ($word !== null) {
+            $parser = new Rorua\ArabicRootExtractor\Extractor();
+
+            $results = $parser->process($word);
+            $params = ['results' => $results];
+        }
+    }
+
+    return $app['twig']->render('pages/home.twig', $params);
+
 })->bind('home');
 
 $app->get('/about', function() use ($app) {
